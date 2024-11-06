@@ -20,22 +20,6 @@
     state: latest
   when: ansible_distribution == "Ubuntu"
 
-# - name: Installing Grafana
-#  ansible.builtin.apt:
-#    name:
-#      - software-properties-common
-#      - apt-transport-https
-#      - ca-certificates
-#    state: latest
-#  when: ansible_distribution == "Ubuntu"
-
-#- name: Adding Grafana Repositories
-#  ansible.builtin.apt_repository:
-#    repo: "deb https://www.packages.grafana.com/oss/de stable main
-#    state: latest
-#    filename: grafana
-#  when: ansible_distribution == "Ubuntu"
-
 - name: Installing Prometheus and Nagios dependencies
   apt:
     name:

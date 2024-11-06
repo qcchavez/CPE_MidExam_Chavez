@@ -1,0 +1,14 @@
+---
+- name: Install Grafana Agent Flow
+  apt:
+    name: grafana
+    state: latest
+  when: ansible_distribution == "Ubuntu"
+
+- name: Enable Grafana service
+  service:
+    name: grafana-server
+    state: restarted
+    enabled: true
+  when: ansible_distribution == "Ubuntu"
+
