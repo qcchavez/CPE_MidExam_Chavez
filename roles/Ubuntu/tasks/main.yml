@@ -1,0 +1,71 @@
+---
+- name: Installing Nagios
+  apt:
+    name:
+      - nagios4-core
+    state: latest
+  when: ansible_distribution == "Ubuntu"
+
+- name: Installing Prometheus
+  apt:
+    name: prometheus
+    state: latest
+  when: ansible_distribution == "Ubuntu"
+
+- name: Installing HTTPD and PHP
+  package:
+    name:
+      - apache2
+      - libapache2-mod-php
+    state: latest
+  when: ansible_distribution == "Ubuntu"
+
+# - name: Installing Grafana
+#  ansible.builtin.apt:
+#    name:
+#      - software-properties-common
+#      - apt-transport-https
+#      - ca-certificates
+#    state: latest
+#  when: ansible_distribution == "Ubuntu"
+
+#- name: Adding Grafana Repositories
+#  ansible.builtin.apt_repository:
+#    repo: "deb https://www.packages.grafana.com/oss/de stable main
+#    state: latest
+#    filename: grafana
+#  when: ansible_distribution == "Ubuntu"
+
+- name: Installing Prometheus and Nagios dependencies
+  apt:
+    name:
+    - libc6-dev
+    - libfreetype6-dev
+    - libpng-dev
+    - gcc
+    - make
+    - wget
+    - libgd-dev
+    state: latest
+  when: ansible_distribution == "Ubuntu"
+
+- name: Enable Prometheus service
+  service:
+    name: prometheus
+    state: restarted
+    enabled: true
+  when: ansible_distribution == "Ubuntu"
+
+- name: Enable Nagios service
+  service:
+    name: nagios4
+    state: restarted
+    enabled: true
+  when: ansible_distribution == "Ubuntu"
+
+- name: Enable HTTPD and PHP service
+  service:
+    name: apache2
+    state: restarted
+    enabled: true
+  when: ansible_distribution == "Ubuntu"

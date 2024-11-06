@@ -1,0 +1,13 @@
+---
+- name: Installing MariaDB
+  yum:
+    name: mariadb-server
+    state: latest
+  when: ansible_distribution == "CentOS"
+
+- name: Enabling MariaDB
+  service:
+    name: mariadb
+    state: restarted
+    enabled: true
+  when: ansible_distribution == "CentOS"

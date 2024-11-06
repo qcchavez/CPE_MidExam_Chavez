@@ -1,0 +1,5 @@
+[CentOS]
+192.168.56.119 ansible_user=cchavez
+
+[Ubuntu]
+192.168.56.116
