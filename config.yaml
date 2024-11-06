@@ -1,4 +1,5 @@
 ---
+
 - hosts: all
   become: true
   pre_tasks:
@@ -15,6 +16,17 @@
     changed_when: false
     when: ansible_distribution == "Ubuntu"
 
+- hosts: Ubuntu
+  become: true
   roles:
-    - Ubuntu
-    - CentOS
+   - Ubuntu
+
+- hosts: Ubuntu2
+  become: true
+  roles:
+   - Ubuntu2
+
+- hosts: CentOS
+  become: true
+  roles:
+   - CentOS
